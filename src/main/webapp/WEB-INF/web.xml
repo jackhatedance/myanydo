@@ -1,0 +1,43 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>OUM Example</display-name>
+
+
+	<welcome-file-list>
+		<welcome-file>index.oum</welcome-file>
+
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/spring/app.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.dingjianghao.oum.web.OumServetContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>OumServlet</servlet-name>
+		<servlet-class>com.dingjianghao.oum.client.web.OumServlet</servlet-class>
+		<init-param>
+			<param-name>session-model-class</param-name>
+			<param-value>com.dingjianghao.oum.example.biz.Application</param-value>
+		</init-param>
+		<init-param>
+			<param-name>timeout</param-name>
+			<param-value>-1</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OumServlet</servlet-name>
+		<url-pattern>/index.oum</url-pattern>
+		<url-pattern>*.oum</url-pattern>
+	</servlet-mapping>
+
+</web-app>
